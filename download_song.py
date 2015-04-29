@@ -1,3 +1,6 @@
+# Code By : Shashank Kulal
+# Date : 29 April 2015
+# Version: 0.1
 import urllib2
 import urllib
 import requests
@@ -7,11 +10,17 @@ from clint.textui import progress
 from random import randint
 from BeautifulSoup import BeautifulSoup
 
-movie_name=raw_input("Enter movie name: ")
+movie_name = raw_input("Enter movie name: ")
 
 def make_url(movie_name):
-	url="http://www.songsmp3.com/1/bollywood-music/list-" + movie_name[0] + ".html"
-	get_page(url)
+	if str.isdigit(movie_name[0]):
+		url="http://www.songsmp3.com/1/bollywood-music/list-0-9.html"
+		get_page(url)
+	elif str.isalpha(movie_name[0]):	
+		url="http://www.songsmp3.com/1/bollywood-music/list-" + movie_name[0] + ".html"
+		get_page(url)
+	else:
+		print "Please do not enter special characters."
 
 def get_page(url):
 	links = []
